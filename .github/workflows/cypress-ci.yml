@@ -14,6 +14,9 @@ jobs:
         spec: 
           - cypress/e2e/api/restfulbooker-api.spec.js
           - cypress/e2e/web/home.spec.js
+        spec_name:
+          - restfulbooker-api.spec.js
+          - home.spec.js
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -32,7 +35,7 @@ jobs:
       - name: Upload Mochawesome Reports
         uses: actions/upload-artifact@v4
         with:
-          name: mochawesome-report-${{ matrix.spec }}
+          name: mochawesome-report-${{ github.run_number }}-${{ matrix.spec_name }}
           path: reports/mochawesome/
   merge-report:
     needs: cypress-run
@@ -44,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: reports/mochawesome/
-          
+
       - name: Install dependencies for report
         run: npm ci
 
