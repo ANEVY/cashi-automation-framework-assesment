@@ -12,6 +12,7 @@
     "test:parallel": "cypress run --parallel --record --key $CYPRESS_RECORD_KEY",
     "report:mochawesome": "npx mochawesome-merge reports/mochawesome/*.json | npx mochawesome-report-generator --reportDir reports/mochawesome/final --saveHtml",
     "report:html": "npx mochawesome-merge reports/mochawesome/*.json > merged-report.json && npx mochawesome-report-generator merged-report.json --reportDir reports/mochawesome/final --saveHtml",
+    "generate:ci:report:html": "npx mochawesome-merge 'reports/mochawesome/**/*.json' > merged-report.json && npx mochawesome-report-generator merged-report.json --reportDir reports/mochawesome/final --saveHtml",
     "clean:reports": "rm -rf reports/*"
   },
   "keywords": [],
