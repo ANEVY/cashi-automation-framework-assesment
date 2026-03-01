@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        spec: 
-          - cypress/e2e/api/restfulbooker-api.spec.js
-          - cypress/e2e/web/home.spec.js
-        spec_name:
-          - restfulbooker-api.spec.js
-          - home.spec.js
+        include:
+          - spec: cypress/e2e/api/restfulbooker-api.spec.js
+            spec_name: restfulbooker-api
+          - spec: cypress/e2e/web/home.spec.js
+            spec_name: home
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -29,14 +28,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress tests (matrix split)
+      - name: Run Cypress test
         run: npx cypress run --spec ${{ matrix.spec }} --env configEnv=dev
           
-      - name: Upload Mochawesome Reports
+      - name: Upload Mochawesome Report
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report-${{ github.run_number }}-${{ matrix.spec_name }}
           path: reports/mochawesome/
+
   merge-report:
     needs: cypress-run
     runs-on: ubuntu-latest
