@@ -1,0 +1,58 @@
+{
+    "validAuth": {
+        "username": "admin",
+        "password": "password123"
+    },
+    "invalidAuth": {
+        "username": "admin",
+        "password": "wrongpass"
+    },
+    "validBooking": {
+        "firstname": "Jim",
+        "lastname": "Brown",
+        "totalprice": 111,
+        "depositpaid": true,
+        "bookingdates": {
+            "checkin": "2018-01-01",
+            "checkout": "2019-01-01"
+        },
+        "additionalneeds": "Breakfast"
+    },
+    "invalidBooking": {
+        "lastname": "Brown",
+        "totalprice": 111
+    },
+    "updateBooking": {
+        "firstname": "James",
+        "lastname": "Brown",
+        "totalprice": 222,
+        "depositpaid": false,
+        "bookingdates": {
+            "checkin": "2018-01-01",
+            "checkout": "2019-01-01"
+        },
+        "additionalneeds": "Lunch"
+    },
+    "updateBookingInvalid": {
+        "firstname": "James",
+        "lastname": "Brown",
+        "totalprice": 333,
+        "depositpaid": true,
+        "bookingdates": {
+            "checkin": "2018-01-01",
+            "checkout": "2019-01-01"
+        },
+        "additionalneeds": "Dinner"
+    },
+    "deleteBooking": {
+        "firstname": "Delete",
+        "lastname": "Me",
+        "totalprice": 1,
+        "depositpaid": true,
+        "bookingdates": {
+            "checkin": "2020-01-01",
+            "checkout": "2020-01-02"
+        },
+        "additionalneeds": "None"
+    }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "cashi-automation-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "test:dev": "cypress run --env configEnv=dev",
+    "test:staging": "cypress run --env configEnv=staging",
+    "test:prod": "cypress run --env configEnv=prod",
+    "open": "cypress open",
+    "test:parallel": "cypress run --parallel --record --key $CYPRESS_RECORD_KEY",
+    "report:mochawesome": "npx mochawesome-merge reports/mochawesome/*.json | npx mochawesome-report-generator --reportDir reports/mochawesome/final --saveHtml",
+    "report:html": "npx mochawesome-merge reports/mochawesome/*.json > merged-report.json && npx mochawesome-report-generator merged-report.json --reportDir reports/mochawesome/final --saveHtml",
+    "clean:reports": "rm -rf reports/*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.11.0",
+    "cypress-xpath": "^2.0.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}
