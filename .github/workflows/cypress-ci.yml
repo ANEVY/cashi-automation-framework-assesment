@@ -37,30 +37,30 @@ jobs:
           name: mochawesome-report-${{ github.run_number }}-${{ matrix.spec_name }}
           path: reports/mochawesome/
 
- merge-report:
-  needs: cypress-run
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
+  merge-report:
+    needs: cypress-run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-    - name: Download all reports
-      uses: actions/download-artifact@v4
-      with:
-        path: reports/mochawesome/
+      - name: Download all reports
+        uses: actions/download-artifact@v4
+        with:
+          path: reports/mochawesome/
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '24.11.1'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.11.1'
 
-    - name: Install dependencies for report
-      run: npm ci
+      - name: Install dependencies for report
+        run: npm ci
 
-    - name: Merge and generate Mochawesome report
-      run: npm run report:html
+      - name: Merge and generate Mochawesome report
+        run: npm run report:html
 
-    - name: Upload Final Mochawesome Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: mochawesome-final
-        path: reports/mochawesome/final/
+      - name: Upload Final Mochawesome Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-final
+          path: reports/mochawesome/final/
